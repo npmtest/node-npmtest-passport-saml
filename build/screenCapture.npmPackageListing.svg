@@ -1,0 +1,51 @@
+<svg height="766" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="766" fill="#555" width="720"></rect>
+<text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
+<tspan x="10" y="26">  0.  2017-04-24 19:17:49 +0000   280169 bytes  .</tspan>
+<tspan x="10" y="42">  1.  2017-04-24 19:17:49 +0000     1093 bytes  LICENSE</tspan>
+<tspan x="10" y="58">  2.  2017-04-24 19:17:49 +0000    11244 bytes  README.md</tspan>
+<tspan x="10" y="74">  3.  2017-04-24 19:17:49 +0000     3299 bytes  docs/adfs/README.md</tspan>
+<tspan x="10" y="90">  4.  2017-04-24 19:17:49 +0000      784 bytes  docs/adfs/retrieve_adfs_certificate.sh</tspan>
+<tspan x="10" y="106">  5.  2017-04-24 19:17:49 +0000       81 bytes  lib/passport-saml/index.js</tspan>
+<tspan x="10" y="122">  6.  2017-04-24 19:17:49 +0000     2814 bytes  lib/passport-saml/inmemory-cache-provider.js</tspan>
+<tspan x="10" y="138">  7.  2017-04-24 19:17:49 +0000    31795 bytes  lib/passport-saml/saml.js</tspan>
+<tspan x="10" y="154">  8.  2017-04-24 19:17:49 +0000     2892 bytes  lib/passport-saml/strategy.js</tspan>
+<tspan x="10" y="170">  9.  2017-04-24 19:17:49 +0000     2950 bytes  package.json</tspan>
+<tspan x="10" y="186"> 10.  2017-04-24 19:17:49 +0000       15 bytes  test/mocha.opts</tspan>
+<tspan x="10" y="202"> 11.  2017-04-24 19:17:49 +0000     1642 bytes  test/samlTests.js</tspan>
+<tspan x="10" y="218"> 12.  2017-04-24 19:17:49 +0000      989 bytes  test/static/acme_tools_com.cert</tspan>
+<tspan x="10" y="234"> 13.  2017-04-24 19:17:49 +0000     1704 bytes  test/static/acme_tools_com.key</tspan>
+<tspan x="10" y="250"> 14.  2017-04-24 19:17:49 +0000     1741 bytes  test/static/acme_tools_com.xml</tspan>
+<tspan x="10" y="266"> 15.  2017-04-24 19:17:49 +0000     1346 bytes  test/static/cert.pem</tspan>
+<tspan x="10" y="282">ls: cannot access test/static/expected: No such file or directory</tspan>
+<tspan x="10" y="298">ls: cannot access metadata: No such file or directory</tspan>
+<tspan x="10" y="314">ls: cannot access without: No such file or directory</tspan>
+<tspan x="10" y="330">ls: cannot access key.xml: No such file or directory</tspan>
+<tspan x="10" y="346"> 16.  2017-04-24 19:17:49 +0000     1346 bytes  test/static/expected metadata without key.xml</tspan>
+<tspan x="10" y="362">ls: cannot access test/static/expected: No such file or directory</tspan>
+<tspan x="10" y="378">ls: cannot access metadata.xml: No such file or directory</tspan>
+<tspan x="10" y="394"> 17.  2017-04-24 19:17:49 +0000     1346 bytes  test/static/expected metadata.xml</tspan>
+<tspan x="10" y="410"> 18.  2017-04-24 19:17:49 +0000     1675 bytes  test/static/key.pem</tspan>
+<tspan x="10" y="426"> 19.  2017-04-24 19:17:49 +0000     2935 bytes  test/static/logout_request_with_bad_signature.xm\</tspan>
+<tspan x="10" y="442">l</tspan>
+<tspan x="10" y="458"> 20.  2017-04-24 19:17:49 +0000     3134 bytes  test/static/logout_request_with_good_signature.x\</tspan>
+<tspan x="10" y="474">ml</tspan>
+<tspan x="10" y="490"> 21.  2017-04-24 19:17:49 +0000     3179 bytes  test/static/logout_request_with_session_index.xm\</tspan>
+<tspan x="10" y="506">l</tspan>
+<tspan x="10" y="522"> 22.  2017-04-24 19:17:49 +0000     4786 bytes  test/static/response-with-uncomplete-attribute.x\</tspan>
+<tspan x="10" y="538">ml</tspan>
+<tspan x="10" y="554">ls: cannot access test/static/testshib: No such file or directory</tspan>
+<tspan x="10" y="570">ls: cannot access encrypted: No such file or directory</tspan>
+<tspan x="10" y="586">ls: cannot access response.xml: No such file or directory</tspan>
+<tspan x="10" y="602"> 23.  2017-04-24 19:17:49 +0000     4786 bytes  test/static/testshib encrypted response.xml</tspan>
+<tspan x="10" y="618">ls: cannot access test/static/testshib: No such file or directory</tspan>
+<tspan x="10" y="634">ls: cannot access encryption: No such file or directory</tspan>
+<tspan x="10" y="650">ls: cannot access cert.pem: No such file or directory</tspan>
+<tspan x="10" y="666"> 24.  2017-04-24 19:17:49 +0000     4786 bytes  test/static/testshib encryption cert.pem</tspan>
+<tspan x="10" y="682">ls: cannot access test/static/testshib: No such file or directory</tspan>
+<tspan x="10" y="698">ls: cannot access encryption: No such file or directory</tspan>
+<tspan x="10" y="714">ls: cannot access pvk.pem: No such file or directory</tspan>
+<tspan x="10" y="730"> 25.  2017-04-24 19:17:49 +0000     4786 bytes  test/static/testshib encryption pvk.pem</tspan>
+<tspan x="10" y="746"> 26.  2017-04-24 19:17:49 +0000   183021 bytes  test/tests.js</tspan>
+</text>
+</svg>

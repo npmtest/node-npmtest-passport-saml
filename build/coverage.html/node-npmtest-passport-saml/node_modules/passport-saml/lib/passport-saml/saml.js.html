@@ -1,0 +1,3065 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-passport-saml/node_modules/passport-saml/lib/passport-saml/saml.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-passport-saml">npmtest-passport-saml (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-passport-saml/node_modules/passport-saml/lib/passport-saml/saml.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">8.35% <small>(38 / 455)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 321)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 58)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">8.37% <small>(38 / 454)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-passport-saml/node_modules/passport-saml/lib/passport-saml/</a> &#187; saml.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var zlib = require('zlib');
+var xml2js = require('xml2js');
+var xmlCrypto = require('xml-crypto');
+var crypto = require('crypto');
+var xmldom = require('xmldom');
+var url = require('url');
+var querystring = require('querystring');
+var xmlbuilder = require('xmlbuilder');
+var xmlenc = require('xml-encryption');
+var xpath = xmlCrypto.xpath;
+var InMemoryCacheProvider = require('./inmemory-cache-provider.js').CacheProvider;
+var Q = require('q');
+&nbsp;
+var SAML = <span class="fstat-no" title="function not covered" >function (options) {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.options = this.initialize(options);</span>
+<span class="cstat-no" title="statement not covered" >  this.cacheProvider = this.options.cacheProvider;</span>
+};
+&nbsp;
+SAML.prototype.initialize = <span class="fstat-no" title="function not covered" >function (options) {</span>
+<span class="cstat-no" title="statement not covered" >  if (!options) {</span>
+<span class="cstat-no" title="statement not covered" >    options = {};</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!options.path) {</span>
+<span class="cstat-no" title="statement not covered" >    options.path = '/saml/consume';</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!options.host) {</span>
+<span class="cstat-no" title="statement not covered" >    options.host = 'localhost';</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!options.issuer) {</span>
+<span class="cstat-no" title="statement not covered" >    options.issuer = 'onelogin_saml';</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (options.identifierFormat === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >    options.identifierFormat = "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress";</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (options.authnContext === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >    options.authnContext = "urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport";</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!options.acceptedClockSkewMs) {</span>
+    // default to no skew
+<span class="cstat-no" title="statement not covered" >    options.acceptedClockSkewMs = 0;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if(!options.validateInResponseTo){</span>
+<span class="cstat-no" title="statement not covered" >    options.validateInResponseTo = false;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if(!options.requestIdExpirationPeriodMs){</span>
+<span class="cstat-no" title="statement not covered" >    options.requestIdExpirationPeriodMs = 28800000; </span> // 8 hours
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if(!options.cacheProvider){</span>
+<span class="cstat-no" title="statement not covered" >      options.cacheProvider = new InMemoryCacheProvider(</span>
+          {keyExpirationPeriodMs: options.requestIdExpirationPeriodMs });
+  }
+  
+<span class="cstat-no" title="statement not covered" >  if (!options.logoutUrl) {</span>
+    // Default to Entry Point
+<span class="cstat-no" title="statement not covered" >    options.logoutUrl = options.entryPoint || '';</span>
+  }
+&nbsp;
+  // sha1 or sha256
+<span class="cstat-no" title="statement not covered" >  if (!options.signatureAlgorithm) {</span>
+<span class="cstat-no" title="statement not covered" >    options.signatureAlgorithm = 'sha1';</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return options;</span>
+};
+&nbsp;
+SAML.prototype.getProtocol = <span class="fstat-no" title="function not covered" >function (req) {</span>
+<span class="cstat-no" title="statement not covered" >  return this.options.protocol || (req.protocol || 'http').concat('://');</span>
+};
+&nbsp;
+SAML.prototype.getCallbackUrl = <span class="fstat-no" title="function not covered" >function (req) {</span>
+    // Post-auth destination
+<span class="cstat-no" title="statement not covered" >  if (this.options.callbackUrl) {</span>
+<span class="cstat-no" title="statement not covered" >    return this.options.callbackUrl;</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    var host;</span>
+<span class="cstat-no" title="statement not covered" >    if (req.headers) {</span>
+<span class="cstat-no" title="statement not covered" >      host = req.headers.host;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      host = this.options.host;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return this.getProtocol(req) + host + this.options.path;</span>
+  }
+};
+&nbsp;
+SAML.prototype.generateUniqueID = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >  var chars = "abcdef0123456789";</span>
+<span class="cstat-no" title="statement not covered" >  var uniqueID = "";</span>
+<span class="cstat-no" title="statement not covered" >  for (var i = 0; i &lt; 20; i++) {</span>
+<span class="cstat-no" title="statement not covered" >    uniqueID += chars.substr(Math.floor((Math.random()*15)), 1);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return uniqueID;</span>
+};
+&nbsp;
+SAML.prototype.generateInstant = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >  return new Date().toISOString();</span>
+};
+&nbsp;
+SAML.prototype.signRequest = <span class="fstat-no" title="function not covered" >function (samlMessage) {</span>
+<span class="cstat-no" title="statement not covered" >  var signer;</span>
+<span class="cstat-no" title="statement not covered" >  var samlMessageToSign = {};</span>
+<span class="cstat-no" title="statement not covered" >  switch(this.options.signatureAlgorithm) {</span>
+    case 'sha256':
+<span class="cstat-no" title="statement not covered" >      samlMessage.SigAlg = 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256';</span>
+<span class="cstat-no" title="statement not covered" >      signer = crypto.createSign('RSA-SHA256');</span>
+<span class="cstat-no" title="statement not covered" >      break;</span>
+    default:
+<span class="cstat-no" title="statement not covered" >      samlMessage.SigAlg = 'http://www.w3.org/2000/09/xmldsig#rsa-sha1';</span>
+<span class="cstat-no" title="statement not covered" >      signer = crypto.createSign('RSA-SHA1');</span>
+<span class="cstat-no" title="statement not covered" >      break;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (samlMessage.SAMLRequest) {</span>
+<span class="cstat-no" title="statement not covered" >    samlMessageToSign.SAMLRequest = samlMessage.SAMLRequest;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (samlMessage.SAMLResponse) {</span>
+<span class="cstat-no" title="statement not covered" >    samlMessageToSign.SAMLResponse = samlMessage.SAMLResponse;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (samlMessage.RelayState) {</span>
+<span class="cstat-no" title="statement not covered" >    samlMessageToSign.RelayState = samlMessage.RelayState;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (samlMessage.SigAlg) {</span>
+<span class="cstat-no" title="statement not covered" >    samlMessageToSign.SigAlg = samlMessage.SigAlg;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  signer.update(querystring.stringify(samlMessageToSign));</span>
+<span class="cstat-no" title="statement not covered" >  samlMessage.Signature = signer.sign(this.options.privateCert, 'base64');</span>
+};
+&nbsp;
+SAML.prototype.generateAuthorizeRequest = <span class="fstat-no" title="function not covered" >function (req, isPassive, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  var id = "_" + self.generateUniqueID();</span>
+<span class="cstat-no" title="statement not covered" >  var instant = self.generateInstant();</span>
+<span class="cstat-no" title="statement not covered" >  var forceAuthn = self.options.forceAuthn || false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  Q.fcall(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >    if(self.options.validateInResponseTo) {</span>
+<span class="cstat-no" title="statement not covered" >      return Q.ninvoke(self.cacheProvider, 'save', id, instant);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      return Q();</span>
+    }
+  })
+  .then(<span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >    var request = {</span>
+      'samlp:AuthnRequest': {
+        '@xmlns:samlp': 'urn:oasis:names:tc:SAML:2.0:protocol',
+        '@ID': id,
+        '@Version': '2.0',
+        '@IssueInstant': instant,
+        '@ProtocolBinding': 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+        '@AssertionConsumerServiceURL': self.getCallbackUrl(req),
+        '@Destination': self.options.entryPoint,        
+        'saml:Issuer' : {
+          '@xmlns:saml' : 'urn:oasis:names:tc:SAML:2.0:assertion',
+          '#text': self.options.issuer
+        }
+      }
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (isPassive)</span>
+<span class="cstat-no" title="statement not covered" >      request['samlp:AuthnRequest']['@IsPassive'] = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (forceAuthn) {</span>
+<span class="cstat-no" title="statement not covered" >      request['samlp:AuthnRequest']['@ForceAuthn'] = true;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (self.options.identifierFormat) {</span>
+<span class="cstat-no" title="statement not covered" >      request['samlp:AuthnRequest']['samlp:NameIDPolicy'] = {</span>
+        '@xmlns:samlp': 'urn:oasis:names:tc:SAML:2.0:protocol',
+        '@Format': self.options.identifierFormat,
+        '@AllowCreate': 'true'
+      };
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!self.options.disableRequestedAuthnContext) {</span>
+<span class="cstat-no" title="statement not covered" >      request['samlp:AuthnRequest']['samlp:RequestedAuthnContext'] = {</span>
+        '@xmlns:samlp': 'urn:oasis:names:tc:SAML:2.0:protocol',
+        '@Comparison': 'exact',
+        'saml:AuthnContextClassRef': {
+          '@xmlns:saml': 'urn:oasis:names:tc:SAML:2.0:assertion',
+          '#text': self.options.authnContext
+        }
+      };
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (self.options.attributeConsumingServiceIndex) {</span>
+<span class="cstat-no" title="statement not covered" >      request['samlp:AuthnRequest']['@AttributeConsumingServiceIndex'] = self.options.attributeConsumingServiceIndex;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    callback(null, xmlbuilder.create(request).end());</span>
+  })
+  .fail(<span class="fstat-no" title="function not covered" >function(err){</span>
+<span class="cstat-no" title="statement not covered" >    callback(err);</span>
+  })
+  .done();
+};
+&nbsp;
+SAML.prototype.generateLogoutRequest = <span class="fstat-no" title="function not covered" >function (req) {</span>
+<span class="cstat-no" title="statement not covered" >  var id = "_" + this.generateUniqueID();</span>
+<span class="cstat-no" title="statement not covered" >  var instant = this.generateInstant();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var request = {</span>
+    'samlp:LogoutRequest' : {
+      '@xmlns:samlp': 'urn:oasis:names:tc:SAML:2.0:protocol',
+      '@xmlns:saml': 'urn:oasis:names:tc:SAML:2.0:assertion',
+      '@ID': id,
+      '@Version': '2.0',
+      '@IssueInstant': instant,
+      '@Destination': this.options.logoutUrl,
+      'saml:Issuer' : {
+        '@xmlns:saml': 'urn:oasis:names:tc:SAML:2.0:assertion',
+        '#text': this.options.issuer
+      },
+      'saml:NameID' : {
+        '@Format': req.user.nameIDFormat,
+        '#text': req.user.nameID
+      }
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (typeof(req.user.nameQualifier) !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >    request['samlp:LogoutRequest']['saml:NameID']['@NameQualifier'] = req.user.nameQualifier;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (typeof(req.user.spNameQualifier) !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >    request['samlp:LogoutRequest']['saml:NameID']['@SPNameQualifier'] = req.user.spNameQualifier;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (req.user.sessionIndex) {</span>
+<span class="cstat-no" title="statement not covered" >    request['samlp:LogoutRequest']['saml2p:SessionIndex'] = {</span>
+      '@xmlns:saml2p': 'urn:oasis:names:tc:SAML:2.0:protocol',
+      '#text': req.user.sessionIndex
+    };
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return xmlbuilder.create(request).end();</span>
+};
+&nbsp;
+SAML.prototype.generateLogoutResponse = <span class="fstat-no" title="function not covered" >function (req, logoutRequest) {</span>
+<span class="cstat-no" title="statement not covered" >  var id = "_" + this.generateUniqueID();</span>
+<span class="cstat-no" title="statement not covered" >  var instant = this.generateInstant();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var request = {</span>
+    'samlp:LogoutResponse' : {
+      '@xmlns:samlp': 'urn:oasis:names:tc:SAML:2.0:protocol',
+      '@xmlns:saml': 'urn:oasis:names:tc:SAML:2.0:assertion',
+      '@ID': id,
+      '@Version': '2.0',
+      '@IssueInstant': instant,
+      '@Destination': this.options.logoutUrl,
+      '@InResponseTo': logoutRequest.ID,
+      'saml:Issuer' : {
+        '#text': this.options.issuer
+      },
+      'samlp:Status': {
+        'samlp:StatusCode': {
+          '@Value': 'urn:oasis:names:tc:SAML:2.0:status:Success'
+        }
+      }
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return xmlbuilder.create(request).end();</span>
+};
+&nbsp;
+SAML.prototype.requestToUrl = <span class="fstat-no" title="function not covered" >function (request, response, operation, additionalParameters, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  if (self.options.skipRequestCompression)</span>
+<span class="cstat-no" title="statement not covered" >    requestToUrlHelper(null, new Buffer(request || response, 'utf8'));</span>
+  else
+<span class="cstat-no" title="statement not covered" >    zlib.deflateRaw(request || response, requestToUrlHelper);</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function requestToUrlHelper(err, buffer) {</span>
+<span class="cstat-no" title="statement not covered" >    if (err) {</span>
+<span class="cstat-no" title="statement not covered" >      return callback(err);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var base64 = buffer.toString('base64');</span>
+<span class="cstat-no" title="statement not covered" >    var target = url.parse(self.options.entryPoint, true);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (operation === 'logout') {</span>
+<span class="cstat-no" title="statement not covered" >      if (self.options.logoutUrl) {</span>
+<span class="cstat-no" title="statement not covered" >        target = url.parse(self.options.logoutUrl, true);</span>
+      }
+    } else <span class="cstat-no" title="statement not covered" >if (operation !== 'authorize') {</span>
+<span class="cstat-no" title="statement not covered" >        return callback(new Error("Unknown operation: "+operation));</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var samlMessage = request ? {</span>
+      SAMLRequest: base64
+    } : {
+      SAMLResponse: base64
+    };
+<span class="cstat-no" title="statement not covered" >    Object.keys(additionalParameters).forEach(<span class="fstat-no" title="function not covered" >function(k) {</span></span>
+<span class="cstat-no" title="statement not covered" >      samlMessage[k] = additionalParameters[k];</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (self.options.privateCert) {</span>
+      // sets .SigAlg and .Signature
+<span class="cstat-no" title="statement not covered" >      self.signRequest(samlMessage);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    Object.keys(samlMessage).forEach(<span class="fstat-no" title="function not covered" >function(k) {</span></span>
+<span class="cstat-no" title="statement not covered" >      target.query[k] = samlMessage[k];</span>
+    });
+&nbsp;
+    // Delete 'search' to for pulling query string from 'query'
+    // https://nodejs.org/api/url.html#url_url_format_urlobj
+<span class="cstat-no" title="statement not covered" >    delete target.search;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    callback(null, url.format(target));</span>
+  }
+};
+&nbsp;
+SAML.prototype.getAdditionalParams = <span class="fstat-no" title="function not covered" >function (req, operation) {</span>
+<span class="cstat-no" title="statement not covered" >  var additionalParams = {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var RelayState = req.query &amp;&amp; req.query.RelayState || req.body &amp;&amp; req.body.RelayState;</span>
+<span class="cstat-no" title="statement not covered" >  if (RelayState) {</span>
+<span class="cstat-no" title="statement not covered" >    additionalParams.RelayState = RelayState;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var optionsAdditionalParams = this.options.additionalParams || {};</span>
+<span class="cstat-no" title="statement not covered" >  Object.keys(optionsAdditionalParams).forEach(<span class="fstat-no" title="function not covered" >function(k) {</span></span>
+<span class="cstat-no" title="statement not covered" >    additionalParams[k] = optionsAdditionalParams[k];</span>
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var optionsAdditionalParamsForThisOperation = {};</span>
+<span class="cstat-no" title="statement not covered" >  if (operation == "authorize") {</span>
+<span class="cstat-no" title="statement not covered" >    optionsAdditionalParamsForThisOperation = this.options.additionalAuthorizeParams || {};</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (operation == "logout") {</span>
+<span class="cstat-no" title="statement not covered" >    optionsAdditionalParamsForThisOperation = this.options.additionalLogoutParams || {};</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  Object.keys(optionsAdditionalParamsForThisOperation).forEach(<span class="fstat-no" title="function not covered" >function(k) {</span></span>
+<span class="cstat-no" title="statement not covered" >    additionalParams[k] = optionsAdditionalParamsForThisOperation[k];</span>
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return additionalParams;</span>
+};
+&nbsp;
+SAML.prototype.getAuthorizeUrl = <span class="fstat-no" title="function not covered" >function (req, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  self.generateAuthorizeRequest(req, self.options.passive, <span class="fstat-no" title="function not covered" >function(err, request){</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err)</span>
+<span class="cstat-no" title="statement not covered" >      return callback(err);</span>
+<span class="cstat-no" title="statement not covered" >    var operation = 'authorize';</span>
+<span class="cstat-no" title="statement not covered" >    self.requestToUrl(request, null, operation, self.getAdditionalParams(req, operation), callback);</span>
+  });
+};
+&nbsp;
+SAML.prototype.getAuthorizeForm = <span class="fstat-no" title="function not covered" >function (req, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+&nbsp;
+  // The quoteattr() function is used in a context, where the result will not be evaluated by javascript
+  // but must be interpreted by an XML or HTML parser, and it must absolutely avoid breaking the syntax
+  // of an element attribute.
+<span class="cstat-no" title="statement not covered" >  var quoteattr = <span class="fstat-no" title="function not covered" >function(s, preserveCR) {</span></span>
+<span class="cstat-no" title="statement not covered" >    preserveCR = preserveCR ? '&amp;#13;' : '\n';</span>
+<span class="cstat-no" title="statement not covered" >    return ('' + s) // Forces the conversion to string.</span>
+      .replace(/&amp;/g, '&amp;amp;') // This MUST be the 1st replacement.
+      .replace(/'/g, '&amp;apos;') // The 4 other predefined entities, required.
+      .replace(/"/g, '&amp;quot;')
+      .replace(/&lt;/g, '&amp;lt;')
+      .replace(/&gt;/g, '&amp;gt;')
+       // Add other replacements here for HTML only 
+       // Or for XML, only if the named entities are defined in its DTD.
+      .replace(/\r\n/g, preserveCR) // Must be before the next replacement.
+      .replace(/[\r\n]/g, preserveCR);
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var getAuthorizeFormHelper = <span class="fstat-no" title="function not covered" >function(err, buffer) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) {</span>
+<span class="cstat-no" title="statement not covered" >      return callback(err);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var operation = 'authorize';</span>
+<span class="cstat-no" title="statement not covered" >    var additionalParameters = self.getAdditionalParams(req, operation);</span>
+<span class="cstat-no" title="statement not covered" >    var samlMessage = {</span>
+      SAMLRequest: buffer.toString('base64')
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    Object.keys(additionalParameters).forEach(<span class="fstat-no" title="function not covered" >function(k) {</span></span>
+<span class="cstat-no" title="statement not covered" >      samlMessage[k] = additionalParameters[k] || '';</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var formInputs = Object.keys(samlMessage).map(<span class="fstat-no" title="function not covered" >function(k) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return '&lt;input type="hidden" name="' + k + '" value="' + quoteattr(samlMessage[k]) + '" /&gt;';</span>
+    }).join('\r\n');
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    callback(null, [</span>
+      '&lt;!DOCTYPE html&gt;',
+      '&lt;html&gt;',
+      '&lt;head&gt;',
+      '&lt;meta charset="utf-8"&gt;',
+      '&lt;meta http-equiv="x-ua-compatible" content="ie=edge"&gt;',
+      '&lt;/head&gt;',
+      '&lt;body onload="document.forms[0].submit()"&gt;',
+      '&lt;noscript&gt;',
+      '&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Since your browser does not support JavaScript, you must press the button below once to proceed.&lt;/p&gt;',
+      '&lt;/noscript&gt;',
+      '&lt;form method="post" action="' + encodeURI(self.options.entryPoint) + '"&gt;',
+      formInputs,
+      '&lt;input type="submit" value="Submit" /&gt;',
+      '&lt;/form&gt;',
+      '&lt;script&gt;document.forms[0].style.display="none";&lt;/script&gt;', // Hide the form if JavaScript is enabled
+      '&lt;/body&gt;',
+      '&lt;/html&gt;'
+    ].join('\r\n'));
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  self.generateAuthorizeRequest(req, self.options.passive, <span class="fstat-no" title="function not covered" >function(err, request) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) {</span>
+<span class="cstat-no" title="statement not covered" >      return callback(err);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (self.options.skipRequestCompression) {</span>
+<span class="cstat-no" title="statement not covered" >      getAuthorizeFormHelper(null, new Buffer(request, 'utf8'));</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      zlib.deflateRaw(request, getAuthorizeFormHelper);</span>
+    }
+  });
+&nbsp;
+};
+&nbsp;
+SAML.prototype.getLogoutUrl = <span class="fstat-no" title="function not covered" >function(req, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var request = this.generateLogoutRequest(req);</span>
+<span class="cstat-no" title="statement not covered" >  var operation = 'logout';</span>
+<span class="cstat-no" title="statement not covered" >  this.requestToUrl(request, null, operation, this.getAdditionalParams(req, operation), callback);</span>
+};
+&nbsp;
+SAML.prototype.getLogoutResponseUrl = <span class="fstat-no" title="function not covered" >function(req, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var response = this.generateLogoutResponse(req, req.samlLogoutRequest);</span>
+<span class="cstat-no" title="statement not covered" >  var operation = 'logout';</span>
+<span class="cstat-no" title="statement not covered" >  this.requestToUrl(null, response, operation, this.getAdditionalParams(req, operation), callback);</span>
+};
+&nbsp;
+SAML.prototype.certToPEM = <span class="fstat-no" title="function not covered" >function (cert) {</span>
+<span class="cstat-no" title="statement not covered" >  cert = cert.match(/.{1,64}/g).join('\n');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (cert.indexOf('-BEGIN CERTIFICATE-') === -1)</span>
+<span class="cstat-no" title="statement not covered" >    cert = "-----BEGIN CERTIFICATE-----\n" + cert;</span>
+<span class="cstat-no" title="statement not covered" >  if (cert.indexOf('-END CERTIFICATE-') === -1)</span>
+<span class="cstat-no" title="statement not covered" >    cert = cert + "\n-----END CERTIFICATE-----\n";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return cert;</span>
+};
+&nbsp;
+// This function checks that the |currentNode| in the |fullXml| document contains exactly 1 valid
+//   signature of the |currentNode|.
+//
+// See https://github.com/bergie/passport-saml/issues/19 for references to some of the attack
+//   vectors against SAML signature verification.
+SAML.prototype.validateSignature = <span class="fstat-no" title="function not covered" >function (fullXml, currentNode, cert) {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  var xpathSigQuery = ".//*[local-name(.)='Signature' and " +</span>
+                      "namespace-uri(.)='http://www.w3.org/2000/09/xmldsig#']";
+<span class="cstat-no" title="statement not covered" >  var signatures = xpath(currentNode, xpathSigQuery);</span>
+  // This function is expecting to validate exactly one signature, so if we find more or fewer
+  //   than that, reject.
+<span class="cstat-no" title="statement not covered" >  if (signatures.length != 1)</span>
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+<span class="cstat-no" title="statement not covered" >  var signature = signatures[0];</span>
+<span class="cstat-no" title="statement not covered" >  var sig = new xmlCrypto.SignedXml();</span>
+<span class="cstat-no" title="statement not covered" >  sig.keyInfoProvider = {</span>
+    getKeyInfo: <span class="fstat-no" title="function not covered" >function (key) {</span>
+<span class="cstat-no" title="statement not covered" >      return "&lt;X509Data&gt;&lt;/X509Data&gt;";</span>
+    },
+    getKey: <span class="fstat-no" title="function not covered" >function (keyInfo) {</span>
+<span class="cstat-no" title="statement not covered" >      return self.certToPEM(cert);</span>
+    }
+  };
+<span class="cstat-no" title="statement not covered" >  sig.loadSignature(signature);</span>
+  // We expect each signature to contain exactly one reference to the top level of the xml we
+  //   are validating, so if we see anything else, reject.
+<span class="cstat-no" title="statement not covered" >  if (sig.references.length != 1 )</span>
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+<span class="cstat-no" title="statement not covered" >  var refUri = sig.references[0].uri;</span>
+<span class="cstat-no" title="statement not covered" >  var refId = (refUri[0] === '#') ? refUri.substring(1) : refUri;</span>
+  // If we can't find the reference at the top level, reject
+<span class="cstat-no" title="statement not covered" >  var idAttribute = currentNode.getAttribute('ID') ? 'ID' : 'Id';</span>
+<span class="cstat-no" title="statement not covered" >  if (currentNode.getAttribute(idAttribute) != refId)</span>
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+  // If we find any extra referenced nodes, reject.  (xml-crypto only verifies one digest, so
+  //   multiple candidate references is bad news)
+<span class="cstat-no" title="statement not covered" >  var totalReferencedNodes = xpath(currentNode.ownerDocument,</span>
+                                  "//*[@" + idAttribute + "='" + refId + "']");
+<span class="cstat-no" title="statement not covered" >  if (totalReferencedNodes.length &gt; 1)</span>
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+<span class="cstat-no" title="statement not covered" >  return sig.checkSignature(fullXml);</span>
+};
+&nbsp;
+SAML.prototype.validatePostResponse = <span class="fstat-no" title="function not covered" >function (container, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  var xml = new Buffer(container.SAMLResponse, 'base64').toString('utf8');</span>
+<span class="cstat-no" title="statement not covered" >  var doc = new xmldom.DOMParser().parseFromString(xml);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var inResponseTo = xpath(doc, "/*[local-name()='Response']/@InResponseTo");</span>
+<span class="cstat-no" title="statement not covered" >  if(inResponseTo){</span>
+<span class="cstat-no" title="statement not covered" >    inResponseTo = inResponseTo.length ? inResponseTo[0].nodeValue : null;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  Q.fcall(<span class="fstat-no" title="function not covered" >function(){</span></span>
+<span class="cstat-no" title="statement not covered" >    if(self.options.validateInResponseTo){</span>
+<span class="cstat-no" title="statement not covered" >      if (inResponseTo) {</span>
+<span class="cstat-no" title="statement not covered" >        return Q.ninvoke(self.cacheProvider, 'get', inResponseTo)</span>
+          .then(<span class="fstat-no" title="function not covered" >function(result) {</span>
+<span class="cstat-no" title="statement not covered" >            if (!result)</span>
+<span class="cstat-no" title="statement not covered" >              throw new Error('InResponseTo is not valid');</span>
+<span class="cstat-no" title="statement not covered" >            return Q();</span>
+          });
+      }
+    } else {
+<span class="cstat-no" title="statement not covered" >      return Q();</span>
+    }
+  })
+  .then(<span class="fstat-no" title="function not covered" >function() {</span>
+    // Check if this document has a valid top-level signature
+<span class="cstat-no" title="statement not covered" >    var validSignature = false;</span>
+<span class="cstat-no" title="statement not covered" >    if (self.options.cert &amp;&amp; self.validateSignature(xml, doc.documentElement, self.options.cert)) {</span>
+<span class="cstat-no" title="statement not covered" >      validSignature = true;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var assertions = xpath(doc, "/*[local-name()='Response']/*[local-name()='Assertion']");</span>
+<span class="cstat-no" title="statement not covered" >    var encryptedAssertions = xpath(doc,</span>
+      "/*[local-name()='Response']/*[local-name()='EncryptedAssertion']");
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (assertions.length + encryptedAssertions.length &gt; 1) {</span>
+      // There's no reason I know of that we want to handle multiple assertions, and it seems like a
+      //   potential risk vector for signature scope issues, so treat this as an invalid signature
+<span class="cstat-no" title="statement not covered" >      throw new Error('Invalid signature');</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (assertions.length == 1) {</span>
+<span class="cstat-no" title="statement not covered" >      if (self.options.cert &amp;&amp;</span>
+          !validSignature &amp;&amp;
+          !self.validateSignature(xml, assertions[0], self.options.cert)) {
+<span class="cstat-no" title="statement not covered" >        throw new Error('Invalid signature');</span>
+      }
+<span class="cstat-no" title="statement not covered" >      return self.processValidlySignedAssertion(assertions[0].toString(), inResponseTo, callback);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (encryptedAssertions.length == 1) {</span>
+<span class="cstat-no" title="statement not covered" >      if (!self.options.decryptionPvk)</span>
+<span class="cstat-no" title="statement not covered" >        throw new Error('No decryption key for encrypted SAML response');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var encryptedDatas = xpath( encryptedAssertions[0], "./*[local-name()='EncryptedData']");</span>
+<span class="cstat-no" title="statement not covered" >      if (encryptedDatas.length != 1)</span>
+<span class="cstat-no" title="statement not covered" >        throw new Error('Invalid signature');</span>
+<span class="cstat-no" title="statement not covered" >      var encryptedDataXml = encryptedDatas[0].toString();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var xmlencOptions = { key: self.options.decryptionPvk };</span>
+<span class="cstat-no" title="statement not covered" >      return Q.ninvoke(xmlenc, 'decrypt', encryptedDataXml, xmlencOptions)</span>
+        .then(<span class="fstat-no" title="function not covered" >function(decryptedXml) {</span>
+<span class="cstat-no" title="statement not covered" >          var decryptedDoc = new xmldom.DOMParser().parseFromString(decryptedXml);</span>
+<span class="cstat-no" title="statement not covered" >          var decryptedAssertions = xpath(decryptedDoc, "/*[local-name()='Assertion']");</span>
+<span class="cstat-no" title="statement not covered" >          if (decryptedAssertions.length != 1)</span>
+<span class="cstat-no" title="statement not covered" >            throw new Error('Invalid EncryptedAssertion content');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          if (self.options.cert &amp;&amp; </span>
+              !validSignature &amp;&amp; 
+              !self.validateSignature(decryptedXml, decryptedAssertions[0], self.options.cert))
+<span class="cstat-no" title="statement not covered" >            throw new Error('Invalid signature');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          self.processValidlySignedAssertion(decryptedAssertions[0].toString(), inResponseTo, callback);</span>
+        });
+    }
+&nbsp;
+    // If there's no assertion, fall back on xml2js response parsing for the status &amp; 
+    //   LogoutResponse code.
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var parserConfig = {</span>
+      explicitRoot: true,
+      explicitCharkey: true,
+      tagNameProcessors: [xml2js.processors.stripPrefix]
+    };
+<span class="cstat-no" title="statement not covered" >    var parser = new xml2js.Parser(parserConfig);</span>
+<span class="cstat-no" title="statement not covered" >    return Q.ninvoke( parser, 'parseString', xml)</span>
+      .then(<span class="fstat-no" title="function not covered" >function(doc) {</span>
+<span class="cstat-no" title="statement not covered" >        var response = doc.Response;</span>
+<span class="cstat-no" title="statement not covered" >        if (response) {</span>
+<span class="cstat-no" title="statement not covered" >          var assertion = response.Assertion;</span>
+<span class="cstat-no" title="statement not covered" >          if (!assertion) {</span>
+<span class="cstat-no" title="statement not covered" >            var status = response.Status;</span>
+<span class="cstat-no" title="statement not covered" >            if (status) {</span>
+<span class="cstat-no" title="statement not covered" >              var statusCode = status[0].StatusCode;</span>
+<span class="cstat-no" title="statement not covered" >              if (statusCode &amp;&amp; statusCode[0].$.Value === "urn:oasis:names:tc:SAML:2.0:status:Responder") {</span>
+<span class="cstat-no" title="statement not covered" >                var nestedStatusCode = statusCode[0].StatusCode;</span>
+<span class="cstat-no" title="statement not covered" >                if (nestedStatusCode &amp;&amp; nestedStatusCode[0].$.Value === "urn:oasis:names:tc:SAML:2.0:status:NoPassive") {</span>
+<span class="cstat-no" title="statement not covered" >                  if (self.options.cert &amp;&amp; !validSignature) {</span>
+<span class="cstat-no" title="statement not covered" >                    throw new Error('Invalid signature');</span>
+                  }
+<span class="cstat-no" title="statement not covered" >                  return callback(null, null, false);</span>
+                }
+              }
+&nbsp;
+              // Note that we're not requiring a valid signature before this logic -- since we are
+              //   throwing an error in any case, and some providers don't sign error results,
+              //   let's go ahead and give the potentially more helpful error.
+<span class="cstat-no" title="statement not covered" >              if (statusCode &amp;&amp; statusCode[0].$.Value) {</span>
+<span class="cstat-no" title="statement not covered" >                var msgType = statusCode[0].$.Value.match(/[^:]*$/)[0];</span>
+<span class="cstat-no" title="statement not covered" >                if (msgType != 'Success') {</span>
+<span class="cstat-no" title="statement not covered" >                  var msg = 'unspecified';</span>
+<span class="cstat-no" title="statement not covered" >                  if (status[0].StatusMessage) {</span>
+<span class="cstat-no" title="statement not covered" >                    msg = status[0].StatusMessage[0]._;</span>
+                  } else <span class="cstat-no" title="statement not covered" >if (statusCode[0].StatusCode) {</span>
+<span class="cstat-no" title="statement not covered" >                    msg = statusCode[0].StatusCode[0].$.Value.match(/[^:]*$/)[0];</span>
+                  }
+<span class="cstat-no" title="statement not covered" >                  var error = new Error('SAML provider returned ' + msgType + ' error: ' + msg);</span>
+<span class="cstat-no" title="statement not covered" >                  var builderOpts = {</span>
+                    rootName: 'Status',
+                    headless: true
+                  };
+<span class="cstat-no" title="statement not covered" >                  error.statusXml = new xml2js.Builder(builderOpts).buildObject(status[0]);</span>
+<span class="cstat-no" title="statement not covered" >                  throw error;</span>
+                }
+              }
+            }
+<span class="cstat-no" title="statement not covered" >            throw new Error('Missing SAML assertion');</span>
+          }
+        } else {
+<span class="cstat-no" title="statement not covered" >          if (self.options.cert &amp;&amp; !validSignature) {</span>
+<span class="cstat-no" title="statement not covered" >            throw new Error('Invalid signature');</span>
+          }
+<span class="cstat-no" title="statement not covered" >          var logoutResponse = doc.LogoutResponse;</span>
+<span class="cstat-no" title="statement not covered" >          if (logoutResponse){</span>
+<span class="cstat-no" title="statement not covered" >            return callback(null, null, true);</span>
+          } else {
+<span class="cstat-no" title="statement not covered" >            throw new Error('Unknown SAML response message');</span>
+          }
+        }
+      });
+  })
+  .fail(<span class="fstat-no" title="function not covered" >function(err) {</span>
+<span class="cstat-no" title="statement not covered" >    callback(err);</span>
+  })
+  .done();
+};
+&nbsp;
+SAML.prototype.processValidlySignedAssertion = <span class="fstat-no" title="function not covered" >function(xml, inResponseTo, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  var msg;</span>
+<span class="cstat-no" title="statement not covered" >  var parserConfig = {</span>
+    explicitRoot: true,
+    tagNameProcessors: [xml2js.processors.stripPrefix]
+  };
+<span class="cstat-no" title="statement not covered" >  var nowMs = new Date().getTime();</span>
+<span class="cstat-no" title="statement not covered" >  var profile = {};</span>
+<span class="cstat-no" title="statement not covered" >  var assertion;</span>
+<span class="cstat-no" title="statement not covered" >  var parser = new xml2js.Parser(parserConfig);</span>
+<span class="cstat-no" title="statement not covered" >  Q.ninvoke(parser, 'parseString', xml)</span>
+  .then(<span class="fstat-no" title="function not covered" >function(doc) {</span>
+<span class="cstat-no" title="statement not covered" >    assertion = doc.Assertion;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var issuer = assertion.Issuer;</span>
+<span class="cstat-no" title="statement not covered" >    if (issuer) {</span>
+<span class="cstat-no" title="statement not covered" >      profile.issuer = issuer[0];</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var authnStatement = assertion.AuthnStatement;</span>
+<span class="cstat-no" title="statement not covered" >    if (authnStatement) {</span>
+<span class="cstat-no" title="statement not covered" >      if (authnStatement[0].$ &amp;&amp; authnStatement[0].$.SessionIndex) {</span>
+<span class="cstat-no" title="statement not covered" >        profile.sessionIndex = authnStatement[0].$.SessionIndex;</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var subject = assertion.Subject;</span>
+<span class="cstat-no" title="statement not covered" >    var subjectConfirmation, confirmData;</span>
+<span class="cstat-no" title="statement not covered" >    if (subject) {</span>
+<span class="cstat-no" title="statement not covered" >      var nameID = subject[0].NameID;</span>
+<span class="cstat-no" title="statement not covered" >      if (nameID) {</span>
+<span class="cstat-no" title="statement not covered" >        profile.nameID = nameID[0]._ || nameID[0];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (nameID[0].$ &amp;&amp; nameID[0].$.Format) {</span>
+<span class="cstat-no" title="statement not covered" >          profile.nameIDFormat = nameID[0].$.Format;</span>
+<span class="cstat-no" title="statement not covered" >          profile.nameQualifier = nameID[0].$.NameQualifier;</span>
+<span class="cstat-no" title="statement not covered" >          profile.spNameQualifier = nameID[0].$.SPNameQualifier;</span>
+        }
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      subjectConfirmation = subject[0].SubjectConfirmation ?</span>
+                            subject[0].SubjectConfirmation[0] : null;
+<span class="cstat-no" title="statement not covered" >      confirmData = subjectConfirmation &amp;&amp; subjectConfirmation.SubjectConfirmationData ?</span>
+                    subjectConfirmation.SubjectConfirmationData[0] : null;
+<span class="cstat-no" title="statement not covered" >      if (subject[0].SubjectConfirmation &amp;&amp; subject[0].SubjectConfirmation.length &gt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >        msg = 'Unable to process multiple SubjectConfirmations in SAML assertion';</span>
+<span class="cstat-no" title="statement not covered" >        throw new Error(msg);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (subjectConfirmation) {</span>
+<span class="cstat-no" title="statement not covered" >        if (confirmData &amp;&amp; confirmData.$) {</span>
+<span class="cstat-no" title="statement not covered" >          var subjectNotBefore = confirmData.$.NotBefore;</span>
+<span class="cstat-no" title="statement not covered" >          var subjectNotOnOrAfter = confirmData.$.NotOnOrAfter;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          var subjErr = self.checkTimestampsValidityError(</span>
+                          nowMs, subjectNotBefore, subjectNotOnOrAfter);
+<span class="cstat-no" title="statement not covered" >          if (subjErr) {</span>
+<span class="cstat-no" title="statement not covered" >            throw subjErr;</span>
+          }
+        }
+      }
+    }
+    
+    // Test to see that if we have a SubjectConfirmation InResponseTo that it matches
+    // the 'InResponseTo' attribute set in the Response
+<span class="cstat-no" title="statement not covered" >    if (self.options.validateInResponseTo) {</span>
+<span class="cstat-no" title="statement not covered" >      if (subjectConfirmation) {</span>
+<span class="cstat-no" title="statement not covered" >        if (confirmData &amp;&amp; confirmData.$) {</span>
+<span class="cstat-no" title="statement not covered" >          var subjectInResponseTo = confirmData.$.InResponseTo;</span>
+<span class="cstat-no" title="statement not covered" >          if (inResponseTo &amp;&amp; subjectInResponseTo &amp;&amp; subjectInResponseTo != inResponseTo) {</span>
+<span class="cstat-no" title="statement not covered" >            return Q.ninvoke(self.cacheProvider, 'remove', inResponseTo)</span>
+              .then(<span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >                throw new Error('InResponseTo is not valid');</span>
+              });
+          } else <span class="cstat-no" title="statement not covered" >if (subjectInResponseTo) {</span>
+<span class="cstat-no" title="statement not covered" >            var foundValidInResponseTo = false;</span>
+<span class="cstat-no" title="statement not covered" >            return Q.ninvoke(self.cacheProvider, 'get', subjectInResponseTo)</span>
+              .then(<span class="fstat-no" title="function not covered" >function(result){</span>
+<span class="cstat-no" title="statement not covered" >                if (result) {</span>
+<span class="cstat-no" title="statement not covered" >                  var createdAt = new Date(result);</span>
+<span class="cstat-no" title="statement not covered" >                  if (nowMs &lt; createdAt.getTime() + self.options.requestIdExpirationPeriodMs)</span>
+<span class="cstat-no" title="statement not covered" >                    foundValidInResponseTo = true;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return Q.ninvoke(self.cacheProvider, 'remove', inResponseTo );</span>
+              })
+              .then(<span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >                if (!foundValidInResponseTo) {</span>
+<span class="cstat-no" title="statement not covered" >                  throw new Error('InResponseTo is not valid');</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return Q();</span>
+              });
+          }
+        }
+      } else {
+<span class="cstat-no" title="statement not covered" >        return Q.ninvoke(self.cacheProvider, 'remove', inResponseTo);</span>
+      }
+    } else {
+<span class="cstat-no" title="statement not covered" >      return Q();</span>
+    }
+  })
+  .then(<span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >    var conditions = assertion.Conditions ? assertion.Conditions[0] : null;</span>
+<span class="cstat-no" title="statement not covered" >    if (assertion.Conditions &amp;&amp; assertion.Conditions.length &gt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >      msg = 'Unable to process multiple conditions in SAML assertion';</span>
+<span class="cstat-no" title="statement not covered" >      throw new Error(msg);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if(conditions &amp;&amp; conditions.$) {</span>
+<span class="cstat-no" title="statement not covered" >      var conErr = self.checkTimestampsValidityError(</span>
+                    nowMs, conditions.$.NotBefore, conditions.$.NotOnOrAfter);
+<span class="cstat-no" title="statement not covered" >      if(conErr)</span>
+<span class="cstat-no" title="statement not covered" >        throw conErr;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var attributeStatement = assertion.AttributeStatement;</span>
+<span class="cstat-no" title="statement not covered" >    if (attributeStatement) {</span>
+<span class="cstat-no" title="statement not covered" >      var attributes = [].concat.apply([], attributeStatement.filter(<span class="fstat-no" title="function not covered" >function (attr) {</span></span>
+<span class="cstat-no" title="statement not covered" >        return Array.isArray(attr.Attribute);</span>
+      }).map(<span class="fstat-no" title="function not covered" >function (attr) {</span>
+<span class="cstat-no" title="statement not covered" >        return attr.Attribute;</span>
+      }));
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var attrValueMapper = <span class="fstat-no" title="function not covered" >function(value) {</span></span>
+<span class="cstat-no" title="statement not covered" >        return typeof value === 'string' ? value : value._;</span>
+      };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (attributes) {</span>
+<span class="cstat-no" title="statement not covered" >        attributes.forEach(<span class="fstat-no" title="function not covered" >function (attribute) {</span></span>
+<span class="cstat-no" title="statement not covered" >         if(!attribute.hasOwnProperty('AttributeValue')) {</span>
+            // if attributes has no AttributeValue child, continue
+<span class="cstat-no" title="statement not covered" >            return;</span>
+          }
+<span class="cstat-no" title="statement not covered" >          var value = attribute.AttributeValue;</span>
+<span class="cstat-no" title="statement not covered" >          if (value.length === 1) {</span>
+<span class="cstat-no" title="statement not covered" >            profile[attribute.$.Name] = attrValueMapper(value[0]);</span>
+          } else {
+<span class="cstat-no" title="statement not covered" >            profile[attribute.$.Name] = value.map(attrValueMapper);</span>
+          }
+        });
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!profile.mail &amp;&amp; profile['urn:oid:0.9.2342.19200300.100.1.3']) {</span>
+      // See http://www.incommonfederation.org/attributesummary.html for definition of attribute OIDs
+<span class="cstat-no" title="statement not covered" >      profile.mail = profile['urn:oid:0.9.2342.19200300.100.1.3'];</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!profile.email &amp;&amp; profile.mail) {</span>
+<span class="cstat-no" title="statement not covered" >      profile.email = profile.mail;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    profile.getAssertionXml = <span class="fstat-no" title="function not covered" >function() {</span> <span class="cstat-no" title="statement not covered" >return xml; </span>};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    callback(null, profile, false);</span>
+  })
+  .fail(<span class="fstat-no" title="function not covered" >function(err) {</span>
+<span class="cstat-no" title="statement not covered" >    callback(err);</span>
+  })
+  .done();
+};
+&nbsp;
+SAML.prototype.checkTimestampsValidityError = <span class="fstat-no" title="function not covered" >function(nowMs, notBefore, notOnOrAfter) {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  if (self.options.acceptedClockSkewMs == -1)</span>
+<span class="cstat-no" title="statement not covered" >      return null;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (notBefore) {</span>
+<span class="cstat-no" title="statement not covered" >    var notBeforeMs = Date.parse(notBefore);</span>
+<span class="cstat-no" title="statement not covered" >    if (nowMs + self.options.acceptedClockSkewMs &lt; notBeforeMs)</span>
+<span class="cstat-no" title="statement not covered" >        return new Error('SAML assertion not yet valid');</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (notOnOrAfter) {</span>
+<span class="cstat-no" title="statement not covered" >    var notOnOrAfterMs = Date.parse(notOnOrAfter);</span>
+<span class="cstat-no" title="statement not covered" >    if (nowMs - self.options.acceptedClockSkewMs &gt;= notOnOrAfterMs)</span>
+<span class="cstat-no" title="statement not covered" >      return new Error('SAML assertion expired');</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return null;</span>
+};
+&nbsp;
+SAML.prototype.validatePostRequest = <span class="fstat-no" title="function not covered" >function (container, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  var xml = new Buffer(container.SAMLRequest, 'base64').toString('utf8');</span>
+<span class="cstat-no" title="statement not covered" >  var dom = new xmldom.DOMParser().parseFromString(xml);</span>
+<span class="cstat-no" title="statement not covered" >  var parserConfig = {</span>
+    explicitRoot: true,
+    tagNameProcessors: [xml2js.processors.stripPrefix]
+  };
+<span class="cstat-no" title="statement not covered" >  var parser = new xml2js.Parser(parserConfig);</span>
+<span class="cstat-no" title="statement not covered" >  parser.parseString(xml, <span class="fstat-no" title="function not covered" >function (err, doc) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) {</span>
+<span class="cstat-no" title="statement not covered" >      return callback(err);</span>
+    }
+&nbsp;
+    // Check if this document has a valid top-level signature
+<span class="cstat-no" title="statement not covered" >    if (self.options.cert &amp;&amp; !self.validateSignature(xml, dom.documentElement, self.options.cert)) {</span>
+<span class="cstat-no" title="statement not covered" >      return callback(new Error('Invalid signature'));</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    processValidlySignedPostRequest(self, doc, callback);</span>
+  });
+};
+&nbsp;
+<span class="fstat-no" title="function not covered" >function processValidlySignedPostRequest(self, doc, callback) {</span>
+<span class="cstat-no" title="statement not covered" >    var request = doc.LogoutRequest;</span>
+<span class="cstat-no" title="statement not covered" >    if (request) {</span>
+<span class="cstat-no" title="statement not covered" >      var profile = {};</span>
+<span class="cstat-no" title="statement not covered" >      if (request.$.ID) {</span>
+<span class="cstat-no" title="statement not covered" >          profile.ID = request.$.ID;</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        return callback(new Error('Missing SAML LogoutRequest ID'));</span>
+      }
+<span class="cstat-no" title="statement not covered" >      var issuer = request.Issuer;</span>
+<span class="cstat-no" title="statement not covered" >      if (issuer) {</span>
+<span class="cstat-no" title="statement not covered" >        profile.issuer = issuer[0];</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        return callback(new Error('Missing SAML issuer'));</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var nameID = request.NameID;</span>
+<span class="cstat-no" title="statement not covered" >      if (nameID) {</span>
+<span class="cstat-no" title="statement not covered" >        profile.nameID = nameID[0]._ || nameID[0];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (nameID[0].$ &amp;&amp; nameID[0].$.Format) {</span>
+<span class="cstat-no" title="statement not covered" >          profile.nameIDFormat = nameID[0].$.Format;</span>
+        }
+      } else {
+<span class="cstat-no" title="statement not covered" >        return callback(new Error('Missing SAML NameID'));</span>
+      }
+<span class="cstat-no" title="statement not covered" >      var sessionIndex = request.SessionIndex;</span>
+<span class="cstat-no" title="statement not covered" >      if (sessionIndex) {</span>
+<span class="cstat-no" title="statement not covered" >        profile.sessionIndex = sessionIndex[0];</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      callback(null, profile, true);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      return callback(new Error('Unknown SAML request message'));</span>
+    }
+}
+&nbsp;
+SAML.prototype.generateServiceProviderMetadata = <span class="fstat-no" title="function not covered" >function( decryptionCert ) {</span>
+<span class="cstat-no" title="statement not covered" >  var metadata = {</span>
+    'EntityDescriptor' : {
+      '@xmlns': 'urn:oasis:names:tc:SAML:2.0:metadata',
+      '@xmlns:ds': 'http://www.w3.org/2000/09/xmldsig#',
+      '@entityID': this.options.issuer,
+      '@ID': this.options.issuer.replace(/\W/g, '_'),
+      'SPSSODescriptor' : {
+        '@protocolSupportEnumeration': 'urn:oasis:names:tc:SAML:2.0:protocol',
+      },
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (this.options.decryptionPvk) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!decryptionCert) {</span>
+<span class="cstat-no" title="statement not covered" >      throw new Error(</span>
+        "Missing decryptionCert while generating metadata for decrypting service provider");
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    decryptionCert = decryptionCert.replace( /-+BEGIN CERTIFICATE-+\r?\n?/, '' );</span>
+<span class="cstat-no" title="statement not covered" >    decryptionCert = decryptionCert.replace( /-+END CERTIFICATE-+\r?\n?/, '' );</span>
+<span class="cstat-no" title="statement not covered" >    decryptionCert = decryptionCert.replace( /\r\n/g, '\n' );</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    metadata.EntityDescriptor.SPSSODescriptor.KeyDescriptor = {</span>
+      'ds:KeyInfo' : {
+        'ds:X509Data' : {
+          'ds:X509Certificate': {
+            '#text': decryptionCert
+          }
+        }
+      },
+      '#list' : [
+        // this should be the set that the xmlenc library supports
+        { 'EncryptionMethod': { '@Algorithm': 'http://www.w3.org/2001/04/xmlenc#aes256-cbc' } },
+        { 'EncryptionMethod': { '@Algorithm': 'http://www.w3.org/2001/04/xmlenc#aes128-cbc' } },
+        { 'EncryptionMethod': { '@Algorithm': 'http://www.w3.org/2001/04/xmlenc#tripledes-cbc' } },
+      ]
+    };
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (this.options.logoutCallbackUrl) {</span>
+<span class="cstat-no" title="statement not covered" >    metadata.EntityDescriptor.SPSSODescriptor.SingleLogoutService = {</span>
+      '@Binding': 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      '@Location': this.options.logoutCallbackUrl
+    };
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  metadata.EntityDescriptor.SPSSODescriptor.NameIDFormat = this.options.identifierFormat;</span>
+<span class="cstat-no" title="statement not covered" >  metadata.EntityDescriptor.SPSSODescriptor.AssertionConsumerService = {</span>
+    '@index': '1',
+    '@isDefault': 'true',
+    '@Binding': 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+    '@Location': this.getCallbackUrl({})
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return xmlbuilder.create(metadata).end({ pretty: true, indent: '  ', newline: '\n' });</span>
+};
+&nbsp;
+exports.SAML = SAML;
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Mon Apr 24 2017 19:17:44 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>

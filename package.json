@@ -1,1 +1,39 @@
-{     "devDependencies": {         "electron-lite": "kaizhu256/node-electron-lite#alpha",         "utility2": "kaizhu256/node-utility2#alpha"     },     "name":"npmtest-passport-saml",     "homepage": "https://github.com/npmtest/node-npmtest-passport-saml",     "repository": {         "type": "git",         "url": "https://github.com/npmtest/node-npmtest-passport-saml.git"     },     "scripts": {         "build-ci": "utility2 shReadmeTest build_ci.sh"     },     "version": "0.0.1" }
+{
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "description": "#### basic test coverage for  [passport-saml (v0.15.0)](https://github.com/bergie/passport-saml)  [![npm package](https://img.shields.io/npm/v/npmtest-passport-saml.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-passport-saml) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-passport-saml.svg)](https://travis-ci.org/npmtest/node-npmtest-passport-saml)",
+    "devDependencies": {
+        "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "utility2": "kaizhu256/node-utility2#alpha"
+    },
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmtest/node-npmtest-passport-saml",
+    "keywords": [
+        "coverage",
+        "test",
+        "passport-saml"
+    ],
+    "license": "MIT",
+    "main": "lib.npmtest_passport_saml.js",
+    "name": "npmtest-passport-saml",
+    "nameAlias": "npmtest_passport_saml",
+    "nameOriginal": "npmtest-passport-saml",
+    "os": [
+        "darwin",
+        "linux"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/npmtest/node-npmtest-passport-saml.git"
+    },
+    "scripts": {
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "npm install \"kaizhu256/node-utility2#alpha\" && utility2 shDeployHeroku",
+        "postinstall": "[ ! -f npm_scripts.sh ] || ./npm_scripts.sh postinstall",
+        "start": "PORT=${PORT:-8080} utility2 start test.js",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
+    },
+    "version": "2017.4.25"
+}
